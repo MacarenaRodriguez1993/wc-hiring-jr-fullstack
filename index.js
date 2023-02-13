@@ -95,5 +95,8 @@ $t.answer(2, async () => {
   // 1. Get ids: $source.getIds()
   // 2. Get text for every id: $source.getText(id)
   // 3. Return array of texts
-  return;
+  const ids = await $source.getIds();
+  const text = ids.map(async (id) => await $source.getText(id));
+  const resul = await Promise.all(text);
+  return resul;
 });
